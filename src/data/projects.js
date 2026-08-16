@@ -26,7 +26,7 @@ export const projects = [
     solution:
       "That was handled by using layered sections, consistent spacing, and a clean image hierarchy that keeps attention on the primary message.",
     images: [genWeb1, genWeb2, genWeb3, genWeb4],
-    accent: "#291C29",
+    accent: "#010101",
     tags: ["MERN", "GSAP", "Framer Motion"],
   },
   {
@@ -43,7 +43,7 @@ export const projects = [
     solution:
       "The solution was to use a compact visual system, a strong color palette, and clean spacing so the experience stays fast to understand.",
     images: [uber, uber1, uber2, uber3],
-    accent: "#dc9317",
+    accent: "#D97904",
     tags: ["MERN", "GSAP", "Framer Motion"],
   },
   {

@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Navbar from "./components/Navbar";
@@ -12,11 +12,13 @@ import Eduction from "./section/Eduction";
 import Experience from "./section/Experience";
 import Footer from "./section/Footer";
 import Projects from "./section/Project";
-import ProjectDetail from "./section/ProjectDetail";
-import NotFound from "./section/NotFound";
 import CustomeCursor from "./components/CustomCursor";
 import ParticalsBackground from "./components/ParticalsBackground";
 import Stairs from "./components/Common/Stairs";
+
+const ProjectDetail = lazy(() => import("./section/ProjectDetail"));
+const NotFound = lazy(() => import("./section/NotFound"));
+const ChatbotWidget = lazy(() => import("./components/ChatbotWidget"));
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -36,21 +38,44 @@ function scrollToSection(target) {
   }
 }
 const App = () => {
+  const location = useLocation();
+  const [isPageVisible, setIsPageVisible] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsPageVisible(false);
 
-    return undefined;
-  }, []);
+    const timer = window.setTimeout(() => {
+      setIsPageVisible(true);
+    }, 1200);
+
+    return () => window.clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <>
       <Stairs />
       <ParticalsBackground />
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/project/:slug" element={<Wrapper children={<ProjectDetail />} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+
+      <div
+        style={{
+          opacity: isPageVisible ? 1 : 0,
+          transition: "opacity 0.25s ease",
+          pointerEvents: isPageVisible ? "auto" : "none",
+        }}
+      >
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/project/:slug" element={<Wrapper children={<ProjectDetail />} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </div>
+
+      <Suspense fallback={null}>
+        <ChatbotWidget />
+      </Suspense>
     </>
   );
 };

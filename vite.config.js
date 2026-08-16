@@ -4,4 +4,16 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(),tailwindcss()],
+  build: {
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          animation: ['framer-motion', 'gsap'],
+          icons: ['react-icons'],
+        },
+      },
+    },
+  },
 })

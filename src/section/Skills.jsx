@@ -6,6 +6,7 @@ import {
   FaJsSquare,
   FaGitAlt,
   FaGithub,
+  FaDocker
 } from "react-icons/fa";
 import {
   SiHibernate,
@@ -16,8 +17,10 @@ import {
   SiExpress,
   SiMysql,
   SiFramer,
+  SiApachekafka,
+  SiRedux,
 } from "react-icons/si";
-import { DiNodejsSmall } from "react-icons/di";
+import { DiNodejsSmall,DiRedis } from "react-icons/di";
 import { motion, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -39,6 +42,10 @@ export default function Skills() {
     { icon: <SiMysql />, name: "MYSQL" },
     { icon: <FaGitAlt />, name: "Git" },
     { icon: <FaGithub />, name: "Github" },
+    { icon: <FaDocker />, name: "Docker" },
+    { icon: <DiRedis />, name: "Redis" },
+    { icon: <SiApachekafka />, name: "Apache Kafka" },
+    { icon: <SiRedux />, name: "Redux" },
   ];
   const repeated = [...skills, ...skills];
 

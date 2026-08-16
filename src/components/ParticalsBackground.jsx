@@ -102,7 +102,7 @@ const ParticalsBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 pointer-events-none z-0 w-full h-full"
+      className="fixed top-0 left-0 pointer-events-none z-5 w-full h-full"
       aria-hidden="true"
     ></canvas>
   );

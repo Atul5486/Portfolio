@@ -41,7 +41,7 @@ export default function Projects() {
         title: project.title,
         link: `/project/${project.slug}`,
         bgColor: project.accent,
-        image: project.images[isMobile ? 1 : 0],
+        image: project.images[isMobile ? 0 : 0],
       })),
     [isMobile],
   );
@@ -109,19 +109,27 @@ export default function Projects() {
                   {activeProject.title}
                 </MH3>
 
-                <Link
-                  to={activeProject.link}
-                  rel="noopener noreferrer"
-                  className="block relative h-[62vh] sm:h-[66vh] overflow-hidden rounded-xl shadow-2xl bg-black/20"
+                <div
+                  className="relative h-[62vh] sm:h-[66vh] overflow-hidden rounded-3xl border border-white/15 p-2 sm:p-3 shadow-[0_25px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+                  style={{
+                    background: `linear-gradient(135deg, ${activeProject.bgColor}33 0%, rgba(255,255,255,0.08) 45%, rgba(10,10,10,0.28) 100%)`,
+                    boxShadow: `0 20px 70px ${activeProject.bgColor}22`,
+                  }}
                 >
-                  <img
-                    src={activeProject.image}
-                    alt={activeProject.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent pointer-events-none" />
-                </Link>
+                  <Link
+                    to={activeProject.link}
+                    rel="noopener noreferrer"
+                    className="block relative h-full overflow-hidden rounded-[1.2rem]"
+                  >
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/10 via-transparent to-white/10 pointer-events-none" />
+                  </Link>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>

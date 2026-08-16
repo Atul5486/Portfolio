@@ -33,7 +33,7 @@ const Home = forwardRef((props, ref) => {
     <section
       ref={ref}
       id="home"
-      className="home p-5 w-full relative overflow-hidden bg-black"
+      className="home min-h-screen w-full relative overflow-hidden bg-black px-4 py-4 sm:p-5"
     >
       {/* gradient blobs */}
       <div className="absolute inset-0">
@@ -61,7 +61,7 @@ const Home = forwardRef((props, ref) => {
         />
       </div>
 
-      <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2">
+      <div className="relative z-10 min-h-[calc(100vh-2rem)] w-full max-w-7xl mx-auto px-2 sm:px-4 grid grid-cols-1 lg:grid-cols-2">
         {/* left */}
         <motion.div
           className="relative top-0 flex flex-col justify-center h-full text-center lg:text-left "
