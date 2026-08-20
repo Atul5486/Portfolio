@@ -1,8 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import Navbar from "./components/Navbar";
 import Home from "./section/Home";
 import Skills from "./section/Skills";
@@ -20,20 +18,19 @@ const ProjectDetail = lazy(() => import("./section/ProjectDetail"));
 const NotFound = lazy(() => import("./section/NotFound"));
 const ChatbotWidget = lazy(() => import("./components/ChatbotWidget"));
 
-gsap.registerPlugin(ScrollToPlugin);
 
 function scrollToSection(target) {
   const section = document.getElementById(target) || document.querySelector(`.${target}`);
   if (section) {
-    gsap.killTweensOf(window);
-    gsap.to(window, {
-      duration: 0.7,
-      ease: "power2.out",
-      scrollTo: {
-        y: section,
-        offsetY: 72,
-        autoKill: true,
-      },
+    // Get the section's position relative to the viewport
+    const sectionPosition = section.getBoundingClientRect().top;
+    const offsetY = 72; // Same offset as before
+    const scrollPosition = sectionPosition + window.pageYOffset - offsetY;
+
+    // Scroll smoothly to the position
+    window.scrollTo({
+      top: scrollPosition,
+      behavior: 'smooth'
     });
   }
 }
