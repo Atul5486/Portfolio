@@ -134,7 +134,6 @@ export default function ChatbotWidget() {
     if (!isOpen) {
       return;
     }
-
     scrollToBottom(isReplying ? "smooth" : "auto");
   }, [messages, answer, isOpen, isReplying, scrollToBottom]);
 
@@ -302,7 +301,8 @@ export default function ChatbotWidget() {
 
           <div
             ref={messagesContainerRef}
-            className="chatbot-scrollbar h-72 space-y-2 overflow-y-auto px-3 py-3"
+            data-lenis-prevent
+            className="chatbot-scrollbar h-72 touch-pan-y overscroll-contain space-y-2 overflow-y-auto px-3 py-3"
           >
             {hasMessages &&
               messages.map((message) => {
